@@ -13,14 +13,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppDetailsBinding;
+import edu.uncc.Group9_InClass05.models.AppDetailsAdapter;
+import edu.uncc.Group9_InClass05.models.AppsListAdapter;
 import edu.uncc.Group9_InClass05.models.DataServices;
 
 /**
@@ -31,10 +39,11 @@ import edu.uncc.Group9_InClass05.models.DataServices;
 public class AppDetailsFragment extends Fragment {
     FragmentAppDetailsBinding binding;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM_TITLE = "title";
+    private static final String ARG_PARAM_APP = "app";
 
-    private String title;
-    private ArrayList<DataServices.App> apps;
+    private DataServices.App app;
+
+    ArrayAdapter adapter;
 
     public AppDetailsFragment() {
         // Required empty public constructor
@@ -44,14 +53,13 @@ public class AppDetailsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param title The Title of the Apps List.
+     * @param app The App object to be displayed
      * @return A new instance of fragment AppDetailsFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static AppDetailsFragment newInstance(String title) {
+    public static AppDetailsFragment newInstance(DataServices.App app) {
         AppDetailsFragment fragment = new AppDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_TITLE, title);
+        args.putSerializable(ARG_PARAM_APP, app);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,7 +68,7 @@ public class AppDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            title = getArguments().getString(ARG_PARAM_TITLE);
+            app =(DataServices.App) getArguments().getSerializable(ARG_PARAM_APP);
         }
     }
 
@@ -76,5 +84,13 @@ public class AppDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        TextView appDetailsName = binding.appDetailsName;
+        TextView appDetailsArtist = binding.appDetailsArtist;
+        TextView appDetailsDate = binding.appDetailsDate;
+
+        ListView listViewGenres = binding.listViewGenres;
+
+        adapter = new AppDetailsAdapter(getActivity(), R.layout.app_details_row_item, app);
+        listViewGenres.setAdapter(adapter);
     }
 }

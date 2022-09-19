@@ -7,16 +7,19 @@
 
 package edu.uncc.Group9_InClass05.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -95,5 +98,28 @@ public class AppsListFragment extends Fragment {
         adapter = new AppsListAdapter(getActivity(), R.layout.app_row_item, apps);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mListener.appDetails(adapter.getItem(i));
+                Log.d(TAG, "onItemClick: " + adapter.getItem(i).toString());
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof AppsListFragment.IListener){
+            mListener = (AppsListFragment.IListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "must implement IListener");
+        }
+    }
+
+    IListener mListener;
+
+    public interface IListener{
+        void appDetails(DataServices.App app);
     }
 }

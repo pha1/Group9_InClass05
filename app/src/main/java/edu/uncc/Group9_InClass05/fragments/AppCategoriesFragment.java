@@ -84,9 +84,13 @@ public class AppCategoriesFragment extends Fragment {
 
         listView = binding.appCategories;
 
+        // Retrieve categories from DataServices
         categories = DataServices.getAppCategories();
 
+        // Used to test if the categories were retrieved correctly
         Log.d(TAG, "onViewCreated: " + categories.get(0));
+
+        // Apply the categories to the ListView
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, categories);
         listView.setAdapter(adapter);
 
@@ -113,6 +117,7 @@ public class AppCategoriesFragment extends Fragment {
     IListener mListener;
 
     public interface IListener {
+        // Change to AppsListFragment
         void selectListApps(String category);
     }
 }

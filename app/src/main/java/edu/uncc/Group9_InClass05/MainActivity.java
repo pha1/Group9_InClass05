@@ -13,9 +13,11 @@ import android.os.Bundle;
 
 import edu.uncc.Group9_InClass05.databinding.ActivityMainBinding;
 import edu.uncc.Group9_InClass05.fragments.AppCategoriesFragment;
+import edu.uncc.Group9_InClass05.fragments.AppDetailsFragment;
 import edu.uncc.Group9_InClass05.fragments.AppsListFragment;
+import edu.uncc.Group9_InClass05.models.DataServices;
 
-public class MainActivity extends AppCompatActivity implements AppCategoriesFragment.IListener{
+public class MainActivity extends AppCompatActivity implements AppCategoriesFragment.IListener, AppsListFragment.IListener{
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements AppCategoriesFrag
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Initial Fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.containerView, new AppCategoriesFragment())
                 .commit();
@@ -37,6 +40,19 @@ public class MainActivity extends AppCompatActivity implements AppCategoriesFrag
     public void selectListApps(String category) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.containerView, AppsListFragment.newInstance(category))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    /**
+     * This method replaces the current Fragment with the AppDetailsFragment by passing it the
+     * desired App object to be viewed
+     * @param app The App object of the selected App the user wishes to view
+     */
+    @Override
+    public void appDetails(DataServices.App app) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.containerView, AppDetailsFragment.newInstance(app))
                 .addToBackStack(null)
                 .commit();
     }

@@ -186,6 +186,18 @@ public class DataServices {
             this.url = url;
         }
 
+        public String getArtistName() {
+            return artistName;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getReleaseDate() {
+            return releaseDate;
+        }
+
         @Override
         public String toString() {
             return "App{" +

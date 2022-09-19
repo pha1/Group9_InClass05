@@ -8,7 +8,6 @@
 package edu.uncc.Group9_InClass05.models;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 import edu.uncc.Group9_InClass05.R;
-import edu.uncc.Group9_InClass05.fragments.AppsListFragment;
-import edu.uncc.Group9_InClass05.models.DataServices;
 
 public class AppsListAdapter extends ArrayAdapter<DataServices.App> {
 
