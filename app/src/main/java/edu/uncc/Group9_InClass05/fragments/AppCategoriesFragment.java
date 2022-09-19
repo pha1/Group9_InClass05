@@ -7,6 +7,7 @@
 
 package edu.uncc.Group9_InClass05.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -36,7 +38,7 @@ public class AppCategoriesFragment extends Fragment {
     private static final String ARG_PARAM_CATEGORIES = "categories";
 
     private ArrayList<String> categories;
-    final static public String TAG = "test";
+    final static String TAG = "test";
 
     ListView listView;
     ArrayAdapter adapter;
@@ -80,10 +82,37 @@ public class AppCategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        listView = binding.appCategories;
+
         categories = DataServices.getAppCategories();
 
         Log.d(TAG, "onViewCreated: " + categories.get(0));
-        //adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, categories);
-        //listView.setAdapter(adapter);
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, categories);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, "onItemClick: " + categories.get(i));
+                String category_selected = categories.get(i);
+                mListener.selectListApps(category_selected);
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof AppCategoriesFragment.IListener){
+            mListener = (AppCategoriesFragment.IListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "must implement IListener");
+        }
+    }
+
+    IListener mListener;
+
+    public interface IListener {
+        void selectListApps(String category);
     }
 }

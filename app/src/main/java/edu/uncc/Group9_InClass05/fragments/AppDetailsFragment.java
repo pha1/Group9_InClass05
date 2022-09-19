@@ -17,8 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppDetailsBinding;
+import edu.uncc.Group9_InClass05.models.DataServices;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,14 +30,11 @@ import edu.uncc.Group9_InClass05.databinding.FragmentAppDetailsBinding;
  */
 public class AppDetailsFragment extends Fragment {
     FragmentAppDetailsBinding binding;
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM_TITLE = "title";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String title;
+    private ArrayList<DataServices.App> apps;
 
     public AppDetailsFragment() {
         // Required empty public constructor
@@ -44,16 +44,14 @@ public class AppDetailsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param title The Title of the Apps List.
      * @return A new instance of fragment AppDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AppDetailsFragment newInstance(String param1, String param2) {
+    public static AppDetailsFragment newInstance(String title) {
         AppDetailsFragment fragment = new AppDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,8 +60,7 @@ public class AppDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            title = getArguments().getString(ARG_PARAM_TITLE);
         }
     }
 
@@ -78,5 +75,6 @@ public class AppDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 }

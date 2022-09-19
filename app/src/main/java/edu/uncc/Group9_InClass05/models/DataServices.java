@@ -171,7 +171,7 @@ public class DataServices {
         return new ArrayList<App>();
     }
 
-    public static class App  implements Serializable {
+    public static class App implements Serializable {
         ArrayList<String> genres;
         String id, artistId, artistName, artworkUrl100, name, releaseDate, url;
 

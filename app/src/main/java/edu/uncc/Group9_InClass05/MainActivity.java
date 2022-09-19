@@ -13,8 +13,9 @@ import android.os.Bundle;
 
 import edu.uncc.Group9_InClass05.databinding.ActivityMainBinding;
 import edu.uncc.Group9_InClass05.fragments.AppCategoriesFragment;
+import edu.uncc.Group9_InClass05.fragments.AppsListFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AppCategoriesFragment.IListener{
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,19 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.containerView, new AppCategoriesFragment())
+                .commit();
+    }
+
+    /**
+     * This method replaces the current Fragment with the AppsListFragment loaded with
+     * the selected category
+     * @param category The String that holds the name of the desired category to be loaded
+     */
+    @Override
+    public void selectListApps(String category) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.containerView, AppsListFragment.newInstance(category))
+                .addToBackStack(null)
                 .commit();
     }
 }

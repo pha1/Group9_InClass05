@@ -13,12 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import edu.uncc.Group9_InClass05.models.AppsListAdapter;
 import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppsListBinding;
+import edu.uncc.Group9_InClass05.models.DataServices;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,15 +34,16 @@ import edu.uncc.Group9_InClass05.databinding.FragmentAppsListBinding;
 public class AppsListFragment extends Fragment {
 
     FragmentAppsListBinding binding;
+    final static public String TAG = "test";
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM_TITLE = "title";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String title;
+    private ArrayList<DataServices.App> apps;
+
+    ListView listView;
+    AppsListAdapter adapter;
 
     public AppsListFragment() {
         // Required empty public constructor
@@ -46,16 +53,14 @@ public class AppsListFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param title The Title of the Apps List..
      * @return A new instance of fragment AppsListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AppsListFragment newInstance(String param1, String param2) {
+    public static AppsListFragment newInstance(String title) {
         AppsListFragment fragment = new AppsListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,8 +69,7 @@ public class AppsListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            title = getArguments().getString(ARG_PARAM_TITLE);
         }
     }
 
@@ -80,5 +84,16 @@ public class AppsListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        getActivity().setTitle(this.title);
+
+        listView = binding.listView;
+
+        apps = DataServices.getAppsByCategory(title);
+        Log.d(TAG, "onViewCreated: " + apps.get(0).toString());
+
+        adapter = new AppsListAdapter(getActivity(), R.layout.app_row_item, apps);
+        listView.setAdapter(adapter);
+
     }
 }

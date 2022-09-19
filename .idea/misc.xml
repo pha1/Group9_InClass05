@@ -4,9 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/activity_main.xml" value="0.925" />
-        <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/fragment_app_categories.xml" value="0.925" />
+        <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/app_row_item.xml" value="0.6046875" />
+        <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/fragment_app_categories.xml" value="0.6881656804733728" />
         <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/fragment_app_details.xml" value="0.9254820218863992" />
-        <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/fragment_apps_list.xml" value="0.9254820218863992" />
+        <entry key="..\:/Users/Phi/AndroidStudioProjects/Group9_InClass05/app/src/main/res/layout/fragment_apps_list.xml" value="0.6548423423423423" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/layout/fragment_app_categories.xml" value="0.328125" />
         <entry key="app/src/main/res/layout/fragment_app_details.xml" value="0.328125" />
