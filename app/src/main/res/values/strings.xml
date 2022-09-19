@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">InClass05</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">iTunes Apps</string>
+    <string name="welcome">Welcome</string>
+    <string name="app_categories">App Categories</string>
+    <string name="top_free">Top Free Apps</string>
+    <string name="top_grossing">Top Grossing Apps</string>
+    <string name="top_paid">Top Paid Apps</string>
+    <string name="new_apps">New Apps We Love</string>
+    <string name="new_games">New Games We Love</string>
+    <string name="app_title">App Name</string>
+    <string name="artist_name">Artist Name</string>
+    <string name="release_date">Release Date</string>
+    <string name="genres_title">Genres</string>
+    <string name="genres">Genre 1</string>
 </resources>
