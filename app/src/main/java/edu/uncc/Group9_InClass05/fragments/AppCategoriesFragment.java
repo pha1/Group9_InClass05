@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppCategoriesBinding;
 import edu.uncc.Group9_InClass05.models.DataServices;
 
@@ -92,6 +93,7 @@ public class AppCategoriesFragment extends Fragment {
 
         // Apply the categories to the ListView
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, categories);
+
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,6 +114,12 @@ public class AppCategoriesFragment extends Fragment {
         } else {
             throw new RuntimeException(context.toString() + "must implement IListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getResources().getString(R.string.app_categories));
     }
 
     IListener mListener;

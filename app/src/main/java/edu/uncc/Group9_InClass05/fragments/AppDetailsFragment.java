@@ -13,22 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppDetailsBinding;
-import edu.uncc.Group9_InClass05.models.AppDetailsAdapter;
-import edu.uncc.Group9_InClass05.models.AppsListAdapter;
 import edu.uncc.Group9_InClass05.models.DataServices;
 
 /**
@@ -84,13 +76,22 @@ public class AppDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getActivity().setTitle(app.getName());
+
+        // Initialize TextViews
         TextView appDetailsName = binding.appDetailsName;
         TextView appDetailsArtist = binding.appDetailsArtist;
         TextView appDetailsDate = binding.appDetailsDate;
 
+        // Set TextViews to corresponding information
+        appDetailsName.setText(app.getName());
+        appDetailsArtist.setText(app.getArtistName());
+        appDetailsDate.setText(app.getReleaseDate());
+
         ListView listViewGenres = binding.listViewGenres;
 
-        adapter = new AppDetailsAdapter(getActivity(), R.layout.app_details_row_item, app);
+        // Apply the categories to the ListView
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, app.getGenres());
         listViewGenres.setAdapter(adapter);
     }
 }

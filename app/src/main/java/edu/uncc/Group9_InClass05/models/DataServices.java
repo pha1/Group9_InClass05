@@ -186,16 +186,24 @@ public class DataServices {
             this.url = url;
         }
 
+        // To access the fields from outside of the Class
         public String getArtistName() {
             return artistName;
         }
 
+        // To access the field from outside of the Class
         public String getName() {
             return name;
         }
 
+        // To access the field from outside of the Class
         public String getReleaseDate() {
             return releaseDate;
+        }
+
+        // To access the field from outside of the Class
+        public ArrayList<String> getGenres() {
+            return genres;
         }
 
         @Override

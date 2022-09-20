@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import edu.uncc.Group9_InClass05.models.AppsListAdapter;
+import edu.uncc.Group9_InClass05.AppsListAdapter;
 import edu.uncc.Group9_InClass05.R;
 import edu.uncc.Group9_InClass05.databinding.FragmentAppsListBinding;
 import edu.uncc.Group9_InClass05.models.DataServices;
@@ -93,16 +92,22 @@ public class AppsListFragment extends Fragment {
         listView = binding.listView;
 
         apps = DataServices.getAppsByCategory(title);
+
+        // Use to test if the Apps were transferred correctly
         Log.d(TAG, "onViewCreated: " + apps.get(0).toString());
 
+        // Create adapter and set it to the ListView
         adapter = new AppsListAdapter(getActivity(), R.layout.app_row_item, apps);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                // When clicked, get the App from the List and send it to the Main Activity to
+                // be processed
                 mListener.appDetails(adapter.getItem(i));
-                Log.d(TAG, "onItemClick: " + adapter.getItem(i).toString());
+                Log.d(TAG, "onItemClick: " + adapter.getItem(i));
             }
         });
     }

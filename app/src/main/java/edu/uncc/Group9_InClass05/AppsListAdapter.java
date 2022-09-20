@@ -5,7 +5,7 @@
  * Srinath Dittakavi
  */
 
-package edu.uncc.Group9_InClass05.models;
+package edu.uncc.Group9_InClass05;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import edu.uncc.Group9_InClass05.R;
+import edu.uncc.Group9_InClass05.models.DataServices;
 
 public class AppsListAdapter extends ArrayAdapter<DataServices.App> {
 
@@ -39,13 +40,15 @@ public class AppsListAdapter extends ArrayAdapter<DataServices.App> {
 
         DataServices.App app = getItem(position);
 
+        // Initiate the TextViews
         TextView textViewAppName = convertView.findViewById(R.id.appName);
         TextView textViewArtistName = convertView.findViewById(R.id.artistName);
         TextView textViewReleaseDate = convertView.findViewById(R.id.releaseDate);
 
-        textViewAppName.setText(app.name);
-        textViewArtistName.setText(app.artistName);
-        textViewReleaseDate.setText(app.releaseDate);
+        // Apply the App's name, artist's name, and release date
+        textViewAppName.setText(app.getName());
+        textViewArtistName.setText(app.getArtistName());
+        textViewReleaseDate.setText(app.getReleaseDate());
 
         return convertView;
     }
